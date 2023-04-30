@@ -1,87 +1,107 @@
 #include "CException.h"
-#include <iostream>
-
 
 	CException::CException() {
-		uEXCErreur = 0;
+		uEXCException = 0;
 	}
 
-	CException::CException(unsigned int uErreur) {
-		uEXCErreur = uErreur;
+	CException::CException(unsigned int uException) {
+		uEXCException = uException;
 	}
 
-	CException::~CException() {}
-		// à supprimer 
-
-	unsigned int CException::EXCLireErreur(void) {
-		return uEXCErreur;
+	int CException::EXCLireException(void) const {
+		return uEXCException;
 	}
 
-	void CException::EXCModifierErreur(unsigned int uErreur) {
-		uEXCErreur = uErreur;
+	void CException::EXCModifierException(unsigned int uException) {
+		uEXCException = uException;
 	}
 
-	void  CException::EXCAfficherErreur(unsigned int uErreur){
-		Chaines chaines;
-		switch (uErreur) {
-
-			case exception_Par_Defaut:
-				cout << chaines.sEXCErreur_Par_Defaut;
+	void  CException::EXCAfficherException() const{
+		switch (uEXCException) {
+			//exception_Division_Par_Zero a ajouter
+			case exceptionParDefaut:
+				cerr << erreur_Par_Defaut;
 				break;
 
-			case exception_Ligne_InferieurOuEgal_Zero:
-				cout << chaines.sEXCLigne_InferieurOuEgal_Zero;
+			case indiceLigneNegatif:
+				cerr << indice_Ligne_Negatif;
 				break;
 
-			case exception_Colonne_InferieurOuEgal_Zero:
-				cout << chaines.sEXCColonne_InferieurOuEgal_Zero;
+			case indiceColonneNegatif:
+				cerr << indice_Colonne_Negatif;
 				break;
 
-			case exception_Dimension_Incompatible:
-				cout << chaines.sEXCDimension_Incompatible;
+			case indiceLigneSupNbLignes:
+				cerr << indice_Ligne_Sup_NbLignes;
+				break;
+
+			case indiceColonneSupNbColonnes:
+				cerr << indice_Colonne_Sup_NbColonnes;
 				break;
 			
-			case exception_Chemin_Vide:
-				cout << chaines.sEXCChemin_Vide;
+			case dimMatricesIncompatible:
+				cerr << dim_Matrices_Incompatible;
 				break;
 
-			case exception_Type_Fichier_Incompatible:
-				cout << chaines.sEXCType_Fichier_Incompatible;
+			case nbLignesDiffNbColonnes:
+				cerr << nbLignes_Diff_NbColonnes;
 				break;
 
-			case exception_Structure_Fichier_Invalid:
-				cout << chaines.sEXCStructure_Fichier_Invalid;
+			case typeValDiffTypeValMatrice:
+				cerr << type_Valeur_Different_Type_Val_Matrice;
 				break;
 
-			case exception_Syntaxe_TypeMatrice_Invalid:
-				cout << chaines.sEXCSyntaxe_TypeMatrice_Invalid;
+			case matriceDiviserParZero:
+				cerr << matrice_Diviser_Par_Zero;
 				break;
 
-			case exception_Syntaxe_NBLignes_Invalid:
-				cout << chaines.sEXCSyntaxe_NBLignes_Invalid;
+			//Exception pour la classe CAnalyseur
+			case typeFichierIncompatible:
+				cerr << type_Fichier_Incompatible;
 				break;
 
-			case exception_Syntaxe_NBColonnes_Invalid:
-				cout << chaines.sEXCSyntaxe_NBColonnes_Invalid;
+			case baliseTypeMatriceIntrouvable:
+				cerr << balise_Type_Matrice_Introuvable;
 				break;
 
-			case exception_Structure_Matrice_Invalid:
-				cout << chaines.sEXCStructure_Matrice_Invalid;
+			case baliseNBLignesIntrouvable:
+				cerr << balise_NBLignes_Introuvable;
 				break;
 
-			case exception_Type_Matrice_Icompatible:
-				cout << chaines.sEXCType_Matrice_Icompatible;
+			case baliseNBColonnesIntrouvable:
+				cerr << balise_NBColonnes_Introuvable;
 				break;
 
-			case exception_Dimension_NBLignes_Icompatible:
-				cout << chaines.sEXCDimension_NBLignes_Icompatible;
+			case baliseDebutMatriceIntrouvable:
+				cerr << balise_Debut_Matrice_Introuvable;
 				break;
 
-			case exception_Dimension_NBColonnes_Icompatible:
-				cout << chaines.sEXCDimension_NBColonnes_Icompatible;
+			case baliseFinMatriceIntrouvable:
+				cerr << balise_Fin_Matrice_Introuvable;
 				break;
 
-		
+			case typeMatricePASTypeDouble:
+				cerr << type_Matrice_PAS_Type_double;
+				break;
 
+			case matriceFichierInvalid:
+				cerr << matrice_Fichier_Invalid;
+				break;
+
+			case impossibleOuvrirFichier:
+				cerr << impossible_Ouvrir_Fichier;
+				break;
+
+			case lignesInferieurOuEgalZero:
+				cerr << lignes_Inferieur_Egal_Zero;
+				break;
+
+			case colonnesInferieurOuEgalZero:
+				cerr << colonnes_Inferieur_Egal_Zero;
+				break;
+
+			case nbArgumentsInfADeux:
+				cerr << nb_Arguments_Inf_A_Deux;
+				break;
 		}
 	}

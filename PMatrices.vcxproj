@@ -104,6 +104,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <AdditionalOptions>/utf-8</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -129,15 +131,18 @@
   <ItemGroup>
     <ClCompile Include="CAnalyseur.cpp" />
     <ClCompile Include="CException.cpp" />
-    <ClCompile Include="Chaines.cpp" />
     <ClCompile Include="CMatrice.cpp" />
-    <ClCompile Include="PMatrices.cpp" />
+    <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CAnalyseur.h" />
     <ClInclude Include="CException.h" />
-    <ClInclude Include="Chaines.h" />
     <ClInclude Include="CMatrice.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="test1.txt" />
+    <Text Include="test2.txt" />
+    <Text Include="test3.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

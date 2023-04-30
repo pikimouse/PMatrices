@@ -1,22 +1,26 @@
-#pragma once
-#include "CMatrice.h"
+#ifndef C_ANALYSEUR_H
+#define C_ANALYSEUR_H
+
 #include <iostream>
+#include <fstream>
+#include <vector>
 #include <string>
+#include "CMatrice.h"
 
 using namespace std;
 
-class CAnalyseur : public CMatrice
+template<typename T>
+class CAnalyseur : public CMatrice<T>
 {
+public:
+    CAnalyseur();
+
+    virtual ~CAnalyseur();
+    
+    CMatrice<T> ANALireMatriceDepuisFichier(const std::string& nomFichier);
+
 private:
-	string fANAFichier;
-	string cANAContenue;
-
-public :
-	void ANALireFichier();
-	void ANAChargerMatrice();
-	CAnalyseur();
-	CAnalyseur(CAnalyseur &ANAParam);
-	~CAnalyseur();
-
+    // Ajouter des membres prives si necessaire
 };
 
+#endif
