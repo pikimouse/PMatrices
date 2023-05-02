@@ -27,6 +27,9 @@
     <ClCompile Include="Main.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="CVecteur.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CException.h">
@@ -38,10 +41,14 @@
     <ClInclude Include="CMatrice.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="CVecteur.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="test3.txt" />
     <Text Include="test1.txt" />
     <Text Include="test2.txt" />
+    <Text Include="test4.txt" />
   </ItemGroup>
 </Project>

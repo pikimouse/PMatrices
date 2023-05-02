@@ -1,7 +1,7 @@
 #include "CMatrice.cpp"
 #include "CAnalyseur.cpp"
 
-void main(int argc, char* argv[])
+int main(int argc, char* argv[])
 {
     try {
         // Verification du nombre d'arguments
@@ -58,4 +58,6 @@ void main(int argc, char* argv[])
         std::cerr << "Erreur : " << e.EXCLireException() << std::endl;
         e.EXCAfficherException();
     }
+
+    return 0;
 }

@@ -1,14 +1,30 @@
 #include "CAnalyseur.h"
 
+/**
+* @brief Constructeur par defaut de la classe CAnalyseur
+* @param
+* @return
+*/
 template<typename T>
 CAnalyseur<T>::CAnalyseur() : CMatrice<T>()
 {}
 
+/**
+* @brief Destructeur de la classe CAnalyseur :
+* @param
+* @pre
+* @return
+*/
 template<typename T>
 CAnalyseur<T>::~CAnalyseur()
 {}
 
-
+/**
+* @fn ANALireMatriceDepuisFichier
+* @brief Fonction qui permet de parser une matrice depuis un fichier text
+* @param Nom du fichier de type chaine de caractere
+* @return Objet de la classe CAnalyseur
+*/
 template <typename T>
 CMatrice<T> CAnalyseur<T>::ANALireMatriceDepuisFichier(const std::string& nomFichier) {
     // Verification du type de fichier
@@ -54,21 +70,31 @@ CMatrice<T> CAnalyseur<T>::ANALireMatriceDepuisFichier(const std::string& nomFic
         else if (ligne.find("Matrice=[") == 0) {
             debutMatriceTrouve = true;
         }
+        // Lecture des lignes de la matrice
         else if (debutMatriceTrouve) {
-            // Lecture des lignes de la matrice
+            //Creation d un vecteur pour stocker les valeurs d une ligne de la matrice.
             std::vector<T> ligneMatrice;
+            //Initialisation des variables debut et fin pour marquer les positions de debut et de fin de la sous-chaine a extraire.
             size_t debut = 0, fin = 0;
+            //Declaration d'une variable pour stocker la valeur extraite de la sous-chaine.
             T valeur;
+            //Une boucle pour extraire les valeurs de la ligne de la matrice
             while (fin != std::string::npos) {
+                //Recherche de l indice de la prochaine occurrence d'un espace a partir de la position debut dans la ligne.
                 fin = ligne.find(' ', debut);
+                //Extrait de la sous-chaine entre debut et fin et la convertit en valeur numerique de type T a l aide de std::stod.
                 valeur = std::stod(ligne.substr(debut, fin - debut));
+                //Ajoute la valeur extraite au vecteur ligneMatrice.
                 ligneMatrice.push_back(valeur);
+                //Mise a jour de la position de debut pour rechercher la prochaine valeur.
                 debut = fin + 1;
             }
             if (ligneMatrice.size() != nbColonnes) {
                 throw CException(matriceFichierInvalid);
             }
+            //Ajoute du vecteur ligneMatrice au vecteur oMATDonnees, qui stocke toutes les lignes de la matrice
             oMATDonnees.push_back(ligneMatrice);
+
             if (oMATDonnees.size() > nbLignes) {
                 throw CException(matriceFichierInvalid);
             }

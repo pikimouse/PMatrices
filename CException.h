@@ -38,7 +38,7 @@
 #define dim_Matrices_Incompatible "Les dimensions des matrices ne sont pas les memes"
 #define nbLignes_Diff_NbColonnes "Le nombre de lignes saisi est different du nombre de lignes de la matrice"
 #define type_Valeur_Different_Type_Val_Matrice "Le type de la valeur est different de celle a modifier"
-#define matrice_Diviser_Par_Zero "Matrice divisee par zero"
+#define matrice_Diviser_Par_Zero "Impossible de diviser une matrice par zero"
 
 //Les messages definit pour les exceptions levees par la classe CAnalyseur
 #define type_Fichier_Incompatible "L'un des fichiers saisi n'est pas un fichier texte"
@@ -50,7 +50,7 @@
 #define matrice_Fichier_Invalid "La matrice de l'un des fichiers saisi est invalid"
 #define impossible_Ouvrir_Fichier "Impossible d'ouvrir l'un des fichiers saisi"
 #define lignes_Inferieur_Egal_Zero "Le nombre de lignes saisi dans l'un des fichiers est inferieur ou egal a zero"
-#define colonnes_Inferieur_Egal_Zero "Le nombre de colonnes saisi dans l'un des fichiers est inferieur ou gal  zero"
+#define colonnes_Inferieur_Egal_Zero "Le nombre de colonnes saisi dans l'un des fichiers est inferieur ou egal a zero"
 #define type_Matrice_PAS_Type_double "Le type definit dans l'un des fichiers saisi n'est pas de type double"
 
 #define nb_Arguments_Inf_A_Deux " Veuillez saisir au moins deux noms de fichiers pour pouvoir faire des calcul"

@@ -6,6 +6,7 @@
 #include <vector>
 #include <string>
 #include "CMatrice.h"
+//#include "CVecteur.cpp"
 
 using namespace std;
 
@@ -17,10 +18,14 @@ public:
 
     virtual ~CAnalyseur();
     
+    /**
+    * @fn ANALireMatriceDepuisFichier
+    * @brief Fonction qui permet de parser une matrice depuis un fichier text
+    * @param Nom du fichier de type chaine de caractere
+    * @return Objet de la classe CMatrice
+    */
     CMatrice<T> ANALireMatriceDepuisFichier(const std::string& nomFichier);
 
-private:
-    // Ajouter des membres prives si necessaire
 };
 
 #endif
