@@ -3,20 +3,15 @@
 
 #include <iostream>
 #include <fstream>
-#include <vector>
 #include <string>
 #include "CMatrice.h"
-//#include "CVecteur.cpp"
+#include "CVecteur.cpp"
 
-using namespace std;
-
-template<typename T>
-class CAnalyseur : public CMatrice<T>
+template<typename MATT>
+class CAnalyseur 
 {
 public:
     CAnalyseur();
-
-    virtual ~CAnalyseur();
     
     /**
     * @fn ANALireMatriceDepuisFichier
@@ -24,7 +19,7 @@ public:
     * @param Nom du fichier de type chaine de caractere
     * @return Objet de la classe CMatrice
     */
-    CMatrice<T> ANALireMatriceDepuisFichier(const std::string& nomFichier);
+    CMatrice<MATT> ANALireMatriceDepuisFichier(const std::string& nomFichier);
 
 };
 

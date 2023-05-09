@@ -1,21 +1,49 @@
 #include "CException.h"
 
+	/**
+	* @brief Constructeur par defaut de la classe CException
+	* @param
+	* @return
+	*/
 	CException::CException() {
 		uEXCException = 0;
 	}
 
+	/**
+	* @brief Constructeur propre de la classe CException
+	* @param
+	* @return
+	*/
 	CException::CException(unsigned int uException) {
 		uEXCException = uException;
 	}
 
+	/**
+	* @fn EXCLireException
+	* @brief Lit l'identifiant de l'exception levée
+	* @param
+	* @return l'identifiant de l'exception levée
+	*/
 	int CException::EXCLireException(void) const {
 		return uEXCException;
 	}
 
+	/**
+	* @fn EXCModifierException
+	* @brief modifie l'identifiant de l'exception levée
+	* @param
+	* @return
+	*/
 	void CException::EXCModifierException(unsigned int uException) {
 		uEXCException = uException;
 	}
 
+	/**
+	* @fn EXCAfficherException
+	* @brief affiche le message de l'exception levée
+	* @param
+	* @return
+	*/
 	void  CException::EXCAfficherException() const{
 		switch (uEXCException) {
 			//exception_Division_Par_Zero a ajouter
@@ -102,6 +130,10 @@
 
 			case nbArgumentsInfADeux:
 				cerr << nb_Arguments_Inf_A_Deux;
+				break;
+
+			case indiceHorsPlage:
+				cerr << indice_hors_plage;
 				break;
 		}
 	}

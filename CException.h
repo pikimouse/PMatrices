@@ -29,6 +29,9 @@
 
 #define nbArgumentsInfADeux 31
 
+//La valeur definit pour l'exception levee par la classe CVecteur
+#define indiceHorsPlage 32
+
 //Les messages definit pour les exceptions levees par la classe CMatrice
 #define erreur_Par_Defaut "Erreur Par Defaut"
 #define indice_Ligne_Negatif "L'indice ligne saisi est negatif"
@@ -55,6 +58,9 @@
 
 #define nb_Arguments_Inf_A_Deux " Veuillez saisir au moins deux noms de fichiers pour pouvoir faire des calcul"
 
+//Le message definit pour lexception levee par la classe Cvecteur
+#define indice_hors_plage "L'indice est hors plage"
+
 using namespace std;
 
 class CException
@@ -63,14 +69,40 @@ private :
 	unsigned int uEXCException;
 
 public :
+	/**
+	* @brief Constructeur par defaut de la classe CException
+	* @param
+	* @return
+	*/
 	CException();
 
+	/**
+	* @brief Constructeur propre de la classe CException
+	* @param
+	* @return
+	*/
 	CException(unsigned int uErreur);
 
+	/**
+	* @fn EXCLireException
+	* @brief Lit l'identifiant de l'exception levée
+	* @param
+	* @return l'identifiant de l'exception levée
+	*/
 	int EXCLireException(void) const;
-
+	/**
+	* @fn EXCModifierException
+	* @brief modifie l'identifiant de l'exception levée
+	* @param
+	* @return
+	*/
 	void EXCModifierException(unsigned int uErreur);
-
+	/**
+	* @fn EXCAfficherException
+	* @brief affiche le message de l'exception levée
+	* @param
+	* @return
+	*/
 	void EXCAfficherException() const;
 
 };

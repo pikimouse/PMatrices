@@ -7,8 +7,8 @@ using namespace std;
 * @param
 * @return
 */
-template<typename T>
-CMatrice<T>::CMatrice() {
+template<typename MATT>
+CMatrice<MATT>::CMatrice() {
 	iMATNbColonnes = 0;
 	iMATNbLignes = 0;
 	oMATDonnees = nullptr;
@@ -19,14 +19,14 @@ CMatrice<T>::CMatrice() {
 * @param entier naturel nombre de lignes et nombres de colonnes
 * @return
 */
-template<typename T>
-CMatrice<T>::CMatrice(int iMATNbLignes, int iMATNbColonnes)
+template<typename MATT>
+CMatrice<MATT>::CMatrice(int iMATNbLignes, int iMATNbColonnes)
 	: iMATNbLignes(iMATNbLignes), iMATNbColonnes(iMATNbColonnes)
 {
-	oMATDonnees = new T * [iMATNbLignes];
+	oMATDonnees = new MATT * [iMATNbLignes];
 	for (int i = 0; i < iMATNbLignes; ++i)
 	{
-		oMATDonnees[i] = new T[iMATNbColonnes];
+		oMATDonnees[i] = new MATT[iMATNbColonnes];
 		for (int j = 0; j < iMATNbColonnes; ++j)
 		{
 			oMATDonnees[i][j] = 0;
@@ -39,17 +39,17 @@ CMatrice<T>::CMatrice(int iMATNbLignes, int iMATNbColonnes)
 * @param MATarg objet de la classe CMatrice
 * @return
 */
-template<typename T>
-CMatrice<T>::CMatrice(const CMatrice<T>& MATarg)
+template<typename MATT>
+CMatrice<MATT>::CMatrice(const CMatrice<MATT>& MATarg)
 {
 	//Copie des dimension
 	iMATNbLignes = MATarg.iMATNbLignes;
 	iMATNbColonnes = MATarg.iMATNbColonnes;
 
-	oMATDonnees = new T * [iMATNbLignes];
+	oMATDonnees = new MATT * [iMATNbLignes];
 	for (int i = 0; i < iMATNbLignes; ++i)
 	{
-		oMATDonnees[i] = new T[iMATNbColonnes];
+		oMATDonnees[i] = new MATT[iMATNbColonnes];
 		for (int j = 0; j < iMATNbColonnes; ++j)
 		{
 			//Recopie des elements d'une matrice dans une autres
@@ -64,8 +64,8 @@ CMatrice<T>::CMatrice(const CMatrice<T>& MATarg)
 * @pre
 * @return
 */
-template<typename T>
-CMatrice<T>::~CMatrice()
+template<typename MATT>
+CMatrice<MATT>::~CMatrice()
 {
 	for (int i = 0; i < iMATNbLignes; ++i)
 	{
@@ -80,11 +80,11 @@ CMatrice<T>::~CMatrice()
 * @param
 * @return Un objet de la classe CMatrice
 */
-template<typename T>
-CMatrice<T> CMatrice<T>::transposer() const
+template<typename MATT>
+CMatrice<MATT> CMatrice<MATT>::MATtransposer() const
 {
 	// Creation de la matrice pour stocker le resultat du transposer des matrices
-	CMatrice<T> result(iMATNbColonnes, iMATNbLignes);
+	CMatrice<MATT> result(iMATNbColonnes, iMATNbLignes);
 	for (int i = 0; i < iMATNbLignes; ++i)
 	{
 		for (int j = 0; j < iMATNbColonnes; ++j)
@@ -101,8 +101,8 @@ CMatrice<T> CMatrice<T>::transposer() const
 * @param Objet de la classe CMatrice
 * @return Reference de l'objet en cours
 */
-template<typename T>
-CMatrice<T>& CMatrice<T>::operator=(const CMatrice<T>& MATarg)
+template<typename MATT>
+CMatrice<MATT>& CMatrice<MATT>::operator=(const CMatrice<MATT>& MATarg)
 {
 	if (this == &MATarg) // Verification de l'auto-affectation
 	{
@@ -114,10 +114,10 @@ CMatrice<T>& CMatrice<T>::operator=(const CMatrice<T>& MATarg)
 	iMATNbColonnes = MATarg.iMATNbColonnes;
 
 	// Reallocation et copie des elements
-	oMATDonnees = new T * [iMATNbLignes];
+	oMATDonnees = new MATT * [iMATNbLignes];
 	for (int i = 0; i < iMATNbLignes; ++i)
 	{
-		oMATDonnees[i] = new T[iMATNbColonnes];
+		oMATDonnees[i] = new MATT[iMATNbColonnes];
 		for (int j = 0; j < iMATNbColonnes; ++j)
 		{
 			oMATDonnees[i][j] = MATarg.oMATDonnees[i][j];
@@ -133,15 +133,15 @@ CMatrice<T>& CMatrice<T>::operator=(const CMatrice<T>& MATarg)
 * @param Objet de la classe CMatrice
 * @return Le resultat de la multiplication des deux matrices
 */
-template<typename T>
-CMatrice<T> CMatrice<T>::operator*(const CMatrice<T>& MATarg) const
+template<typename MATT>
+CMatrice<MATT> CMatrice<MATT>::operator*(const CMatrice<MATT>& MATarg) const
 {
 	if (iMATNbLignes != MATarg.iMATNbColonnes) {
 		// exception nombre de lignes different du nombre de colonnes
 		throw (CException(nbLignesDiffNbColonnes));
 	}
 	// Creation de la matrice pour stocker le resultat du produit des matrices
-	CMatrice<T> result(iMATNbLignes, MATarg.iMATNbColonnes);
+	CMatrice<MATT> result(iMATNbLignes, MATarg.iMATNbColonnes);
 
 	// Boucle sur les lignes de la matrice
 	for (int i = 0; i < iMATNbLignes; ++i)
@@ -167,10 +167,10 @@ CMatrice<T> CMatrice<T>::operator*(const CMatrice<T>& MATarg) const
 * @param Constante reelle
 * @return Resultat de la multiplication
 */
-template<typename T>
-CMatrice<T> CMatrice<T>::operator*(const double c) const
+template<typename MATT>
+CMatrice<MATT> CMatrice<MATT>::operator*(const double c) const
 {
-	CMatrice<T> result(iMATNbLignes, iMATNbColonnes);
+	CMatrice<MATT> result(iMATNbLignes, iMATNbColonnes);
 	for (int i = 0; i < iMATNbLignes; ++i)
 	{
 		for (int j = 0; j < iMATNbColonnes; ++j)
@@ -187,8 +187,8 @@ CMatrice<T> CMatrice<T>::operator*(const double c) const
 * @param Objet de la classe CMatrice
 * @return Resultat de l'addition des des deux matrices
 */
-template<typename T>
-CMatrice<T> CMatrice<T>::operator+(const CMatrice<T>& MATarg) const
+template<typename MATT>
+CMatrice<MATT> CMatrice<MATT>::operator+(const CMatrice<MATT>& MATarg) const
 {
 	// Verification des dimensions des deux matrices
 	if (iMATNbLignes != MATarg.iMATNbLignes || iMATNbColonnes != MATarg.iMATNbColonnes)
@@ -198,7 +198,7 @@ CMatrice<T> CMatrice<T>::operator+(const CMatrice<T>& MATarg) const
 	}
 
 	// Creation d'une nouvelle matrice pour stocker le resultat
-	CMatrice<T> result(iMATNbLignes, iMATNbColonnes);
+	CMatrice<MATT> result(iMATNbLignes, iMATNbColonnes);
 
 	// Addition des elements correspondants des deux matrices
 	for (int i = 0; i < iMATNbLignes; ++i)
@@ -218,8 +218,8 @@ CMatrice<T> CMatrice<T>::operator+(const CMatrice<T>& MATarg) const
 * @param Objet de la classe CMatrice
 * @return Resultat de la soustraction des des deux matrices
 */
-template<typename T>
-CMatrice<T> CMatrice<T>::operator-(const CMatrice<T>& arg) const
+template<typename MATT>
+CMatrice<MATT> CMatrice<MATT>::operator-(const CMatrice<MATT>& arg) const
 {
 	// Verification des dimensions des deux matrices
 	if (iMATNbLignes != arg.iMATNbLignes || iMATNbColonnes != arg.iMATNbColonnes)
@@ -229,7 +229,7 @@ CMatrice<T> CMatrice<T>::operator-(const CMatrice<T>& arg) const
 	}
 
 	// Creation d'une nouvelle matrice pour stocker le resultat
-	CMatrice<T> result(iMATNbLignes, iMATNbColonnes);
+	CMatrice<MATT> result(iMATNbLignes, iMATNbColonnes);
 
 	// Soustraction des elements correspondants des deux matrices
 	for (int i = 0; i < iMATNbLignes; ++i)
@@ -249,15 +249,15 @@ CMatrice<T> CMatrice<T>::operator-(const CMatrice<T>& arg) const
 * @param Constante reelle
 * @return Resultat de la division
 */
-template<typename T>
-CMatrice<T> CMatrice<T>::operator/(const double c) const
+template<typename MATT>
+CMatrice<MATT> CMatrice<MATT>::operator/(const double c) const
 {
 	// Exception si l'utilisateur saisi la valeur Zero
 	if (c == 0)
 		throw CException(matriceDiviserParZero);
 
 	// Division de chaque valeur dans la matrice par la constante saisi par l'utilisateur
-	CMatrice<T> result(iMATNbLignes, iMATNbColonnes);
+	CMatrice<MATT> result(iMATNbLignes, iMATNbColonnes);
 	for (int i = 0; i < iMATNbLignes; ++i)
 	{
 		for (int j = 0; j < iMATNbColonnes; ++j)
@@ -273,10 +273,10 @@ CMatrice<T> CMatrice<T>::operator/(const double c) const
 * @brief Surcharge de l'operateur<< qui sert a afficher une matrice
 * @param Objet de sortie
 * @param Objet de la classe CMatrice
-* @return Resultat l'affichage en sortie
+* @return Affiche la matrice en sortie
 */
-template<typename T>
-std::ostream& operator<<(std::ostream& out, const CMatrice<T>& MATarg)
+template<typename MATT>
+std::ostream& operator<<(std::ostream& out, const CMatrice<MATT>& MATarg)
 {
 	for (int i = 0; i < MATarg.iMATNbLignes; i++)
 	{
@@ -295,8 +295,8 @@ std::ostream& operator<<(std::ostream& out, const CMatrice<T>& MATarg)
 * @param
 * @return Nombre de lignes de la matrice
 */
-template<typename T>
-int CMatrice<T>::MATLireNbLignes()
+template<typename MATT>
+int CMatrice<MATT>::MATLireNbLignes()
 {
 	return iMATNbLignes;
 }
@@ -307,8 +307,8 @@ int CMatrice<T>::MATLireNbLignes()
 * @param
 * @return Nombre de colonnes de la matrice
 */
-template<typename T>
-int CMatrice<T> ::MATLireNbColonnes()
+template<typename MATT>
+int CMatrice<MATT> ::MATLireNbColonnes()
 {
 	return iMATNbColonnes;
 }
@@ -321,8 +321,8 @@ int CMatrice<T> ::MATLireNbColonnes()
 * @param Nouvelle valeur
 * @return
 */
-template<typename T>
-void CMatrice<T>::MATModifierElement(int i, int j, T val) {
+template<typename MATT>
+void CMatrice<MATT>::MATModifierElement(int i, int j, MATT val) {
 	//// Verification des indices
 	if (i < 0) {
 		//exception indice ligne negative
@@ -351,8 +351,8 @@ void CMatrice<T>::MATModifierElement(int i, int j, T val) {
 * @param Indice de colonne
 * @return Valeur demandee
 */
-template <typename T>
-T CMatrice<T>::MATAfficherElement(int i, int j) const {
+template <typename MATT>
+MATT CMatrice<MATT>::MATAfficherElement(int i, int j) const {
 	//// Verification des indices
 	if (i < 0) {
 		//exception indice ligne negative
@@ -374,7 +374,6 @@ T CMatrice<T>::MATAfficherElement(int i, int j) const {
 	return oMATDonnees[i][j];
 }
 
-template class CMatrice<double>;
 
 
 

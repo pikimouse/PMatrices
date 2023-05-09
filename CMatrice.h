@@ -7,13 +7,13 @@
 #include <iostream>
 #include <type_traits>
 
-template<typename T>
+template<typename MATT>
 class CMatrice
 {
 
 //Attributs
 private:
-    T** oMATDonnees;
+    MATT** oMATDonnees;
     int iMATNbLignes;
     int iMATNbColonnes;
 
@@ -37,7 +37,7 @@ public:
     * @param MATarg objet de la classe CMatrice
     * @return
     */
-    CMatrice(const CMatrice& other);
+    CMatrice(const CMatrice& MATarg);
 
     /**
     * @brief Destructeur de la classe CMatrice : Il a pour charge de desallouer le pointeur oMATDonnees
@@ -53,7 +53,7 @@ public:
     * @param
     * @return Un objet de la classe CMatrice
     */
-    CMatrice transposer() const;
+    CMatrice MATtransposer() const;
 
     /**
     * @fn operator=
@@ -108,10 +108,10 @@ public:
     * @brief Surcharge de l'operateur<< qui sert a afficher une matrice
     * @param Objet de sortie
     * @param Objet de la classe CMatrice
-    * @return Resultat l'affichage en sortie
+    * @return Affiche la matrice en sortie
     */
-    template<typename T>
-    friend std::ostream& operator<<(std::ostream& os, const CMatrice<T>& MAT);
+    template<typename MATT>
+    friend std::ostream& operator<<(std::ostream& os, const CMatrice<MATT>& MATarg);
 
 
     /**
@@ -138,7 +138,7 @@ public:
     * @param Nouvelle valeur
     * @return
     */
-    void MATModifierElement(int i, int j, T val);
+    void MATModifierElement(int iNbLigne, int iNbColonne, MATT val);
 
     /**
     * @fn MATAfficherElement
@@ -147,7 +147,7 @@ public:
     * @param Indice de colonne
     * @return Valeur demandée
     */
-    T MATAfficherElement(int i, int j) const;
+    MATT MATAfficherElement(int iNbLigne, int iNbColonne) const;
 
 
 };
